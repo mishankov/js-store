@@ -11,7 +11,6 @@ const unsub1 = a.subscribe(
 );
 
 a.set(5);
-a.update((n) => n + 1);
 
 const unsub2 = a.subscribe(
   (value) => {
@@ -22,8 +21,28 @@ const unsub2 = a.subscribe(
 
 a.update((n) => n + 1);
 
-unsub1();
+const unsub3 = a.subscribe(
+  (value) => {
+    console.log(`unsub3: a changed to ${value}`);
+  },
+  () => console.log("unsub3: unsubbed")
+);
 
 a.update((n) => n + 1);
 
+const unsub4 = a.subscribe(
+  (value) => {
+    console.log(`unsub4: a changed to ${value}`);
+  },
+  () => console.log("unsub4: unsubbed")
+);
+
+a.update((n) => n + 1);
+
+unsub3();
+a.update((n) => n + 1);
+unsub4();
+a.update((n) => n + 1);
+unsub1();
+a.update((n) => n + 1);
 unsub2();

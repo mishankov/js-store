@@ -42,8 +42,8 @@ export class Store<T> {
     const subToDelete = this.currentSubId;
     return () => {
       this.subscribers = this.subscribers.filter((sub) => {
-        const res = sub.id != subToDelete;
-        if (res === true)
+        const res = sub.id !== subToDelete;
+        if (res === false)
           if (sub.unsubCallback !== undefined) sub.unsubCallback();
         return res;
       });
